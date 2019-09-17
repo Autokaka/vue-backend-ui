@@ -1,5 +1,7 @@
 # vue-backend-ui
 
+This is a vue extension framework that helps you build UI fastly in bakend of any frontier project based on vue. It is still under construction, I'm keeping working every day.
+
 ## Project setup
 ```
 npm install
