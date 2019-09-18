@@ -1,6 +1,6 @@
 <template>
   <router-view v-if="layoutNull" />
-  <el-row v-else ref="app">
+  <el-row v-else>
     <!-- 管理界面基础布局(admin) -->
     <el-container v-if="layout.admin">
       <el-aside :style="aside">
