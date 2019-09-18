@@ -1,13 +1,13 @@
 <template>
   <router-view v-if="layoutNull" />
-  <el-container v-else>
+  <el-row v-else ref="app">
     <!-- 管理界面基础布局(admin) -->
     <el-container v-if="layout.admin">
-      <el-aside>
+      <el-aside :style="aside">
         <Aside></Aside>
       </el-aside>
       <el-container>
-        <el-header>
+        <el-header :style="header">
           <Header></Header>
         </el-header>
         <el-main>
@@ -32,9 +32,9 @@
     </el-container>
     <!-- 空布局(empty) -->
     <el-container v-if="layout.empty">
-      <router-view />
+      <router-view :clientHeight="clientHeight" />
     </el-container>
-  </el-container>
+  </el-row>
 </template>
 
 <script>
@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       layoutNull: true,
+      clientHeight: 0,
       layout: {
         admin: false,
         standard: false,
@@ -57,9 +58,35 @@ export default {
       }
     };
   },
+  mounted() {
+    if (this.clientHeight == 0) this.mountHeight();
+    this.setBodyHeight(this.clientHeight);
+  },
+  beforeDestroy() {
+    document.querySelector("body").removeAttribute("style");
+  },
   beforeUpdate() {
     this.switchLayout(this.$route.meta.layout);
     this.layoutNull = false;
+  },
+  computed: {
+    aside() {
+      return {
+        width: `auto`,
+        height: `${this.clientHeight}px`
+      };
+    },
+    header() {
+      return {
+        height: `auto`,
+        padding: 0
+      };
+    }
+  },
+  watch: {
+    clientHeight: function() {
+      this.setBodyHeight(this.clientHeight);
+    }
   },
   methods: {
     resetLayout() {
@@ -76,31 +103,27 @@ export default {
         }
       }
       this.layout.empty = true;
+    },
+    mountHeight() {
+      this.clientHeight = `${document.documentElement.clientHeight}`;
+      window.onresize = () => {
+        this.clientHeight = `${document.documentElement.clientHeight}`;
+      };
+    },
+    setBodyHeight(height) {
+      document
+        .querySelector("body")
+        .setAttribute("style", `height: ${height}px`);
     }
   }
 };
 </script>
 
-<style>
-.el-header,
+<style scoped>
 .el-footer {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
   line-height: 60px;
-}
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
 }
 </style>
