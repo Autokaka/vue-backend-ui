@@ -13,9 +13,17 @@ export default new Router({
       path: '/login',
       name: 'login',
       meta: {
-        layout: 'standard' // 指定布局
+        layout: 'empty' // 指定布局
       },
       component: () => import('./views/Login.vue')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      meta: {
+        layout: 'admin' // 指定布局
+      },
+      component: () => import('./views/Admin.vue')
     }
   ]
 })
