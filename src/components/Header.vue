@@ -1,20 +1,27 @@
 <template>
-  <el-row class="page" :style="headerStyle"></el-row>
+  <el-row class="header" :style="headerStyle">
+    <el-row class="ham">
+      <el-button @click="reverseCollapse" :icon="hamIcon" circle></el-button>
+    </el-row>
+  </el-row>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Header",
   props: {
-    icon: String,
-    title: String,
-    is_online: Boolean,
     theme: {
       type: String,
       default: "#2196F3"
     }
   },
   computed: {
+    ...mapState(["aside"]),
+    hamIcon() {
+      if (this.aside.isCollapse) return "el-icon-s-unfold";
+      else return "el-icon-s-fold";
+    },
     headerStyle() {
       return {
         background: this.theme
@@ -22,30 +29,19 @@ export default {
     }
   },
   methods: {
-    onLogout() {
-      // 重定向到登录页面
-      this.$router.push({ path: "/login" });
-    }
+    ...mapActions(["reverseCollapse"])
   }
 };
 </script>
 
 <style scoped>
 /* 整体页面样式 */
-.page {
+.header {
   height: 4rem;
 }
-/* 标题样式 */
-.title {
-  color: white !important;
-  font-size: 1.3rem;
-  height: 4rem;
-  line-height: 4rem;
+.ham {
   margin-left: 1rem;
-}
-/* 退出登录按钮样式 */
-.logout {
-  float: right;
-  margin: 0.7rem;
+  vertical-align: middle;
+  line-height: 4rem;
 }
 </style>
