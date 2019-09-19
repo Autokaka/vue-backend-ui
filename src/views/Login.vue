@@ -44,7 +44,7 @@ export default {
     setBody() {
       document.querySelector("body").setAttribute(
         "style",
-        ` background-color: #0f9d58;
+        ` background-color: #2196F3;
           display: flex;
           justify-content: center;
           align-items: center;
