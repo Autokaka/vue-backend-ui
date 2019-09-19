@@ -1,16 +1,13 @@
 <template>
   <div>
     <el-menu
-      default-active="1-4-1"
-      class="el-menu-vertical-demo"
+      default-active="0"
+      class="el-menu-vertical"
       @open="onOpen"
       @close="onClose"
-      :collapse="isCollapse"
+      :collapse="aside.isCollapse"
     >
-      <el-menu-item class="ham" @click="isCollapse = !isCollapse" v-model="isCollapse">
-        <i class="el-icon-menu"></i>
-      </el-menu-item>
-      <el-menu-item index="0">
+      <el-menu-item style="margin-top:0.3rem;" index="0">
         <i class="el-icon-document"></i>
         <span slot="title">导航一</span>
       </el-menu-item>
@@ -39,11 +36,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      isCollapse: true
-    };
+  computed: {
+    ...mapState(["aside"])
   },
   methods: {
     onOpen(key, keyPath) {
@@ -57,11 +53,7 @@ export default {
 </script>
 
 <style scoped>
-.ham {
-  text-align: center;
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
+.el-menu-vertical:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
 }
 </style>
