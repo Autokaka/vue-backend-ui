@@ -13,6 +13,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
+//api
+import api from './api/install'
+Vue.use(api)
+
 new Vue({
   router,
   store,
