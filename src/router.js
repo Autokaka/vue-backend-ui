@@ -18,12 +18,12 @@ export default new Router({
       component: () => import('./views/Login.vue')
     },
     {
-      path: '/admin',
-      name: 'admin',
+      path: '/about',
+      name: 'about',
       meta: {
         layout: 'admin' // 指定布局
       },
-      component: () => import('./views/Admin.vue')
+      component: () => import('./views/About.vue')
     }
   ]
 })
