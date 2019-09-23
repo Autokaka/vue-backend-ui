@@ -1,5 +1,5 @@
 <template>
-  <el-row class="header" :style="headerStyle">
+  <el-row class="header" :style="header">
     <el-row class="ham">
       <el-button @click="reverseCollapse" :icon="hamIcon" circle></el-button>
     </el-row>
@@ -22,7 +22,7 @@ export default {
       if (this.aside.isCollapse) return "el-icon-s-unfold";
       else return "el-icon-s-fold";
     },
-    headerStyle() {
+    header() {
       return {
         background: this.theme
       };
