@@ -1,5 +1,7 @@
-import example from './example'
+// import example from './example'
+import mysql from './mysql'
 
 export default {
-  example
+  // example
+  mysql
 }
