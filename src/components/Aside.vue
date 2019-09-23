@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-      default-active="0"
+      :default-active="activeIndex"
       class="el-menu-vertical"
       @open="onOpen"
       @close="onClose"
@@ -38,6 +38,11 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      activeIndex: undefined
+    };
+  },
   computed: {
     ...mapState(["aside"])
   },
