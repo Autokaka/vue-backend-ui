@@ -7,7 +7,9 @@ const install = function(Vue) {
     $api: {
       get() {
         return apiList
-      }
+      },
+      enumerable: false, // 不可枚举
+      configurable: false // 不可重写
     }
   })
 }
