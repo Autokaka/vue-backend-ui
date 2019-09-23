@@ -13,20 +13,20 @@
         <el-main>
           <router-view />
         </el-main>
-        <el-footer>
+        <el-footer :style="footer">
           <Footer></Footer>
         </el-footer>
       </el-container>
     </el-container>
     <!-- 标准界面基础布局(standard) -->
     <el-container v-if="layout.standard">
-      <el-header>
+      <el-header :style="header">
         <Header></Header>
       </el-header>
       <el-main>
         <router-view />
       </el-main>
-      <el-footer>
+      <el-footer :style="footer">
         <Footer></Footer>
       </el-footer>
     </el-container>
@@ -81,6 +81,12 @@ export default {
         height: `auto`,
         padding: 0
       };
+    },
+    footer() {
+      return {
+        height: `auto`,
+        padding: 0
+      };
     }
   },
   watch: {
@@ -120,10 +126,4 @@ export default {
 </script>
 
 <style scoped>
-.el-footer {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
 </style>
