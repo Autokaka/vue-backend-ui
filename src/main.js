@@ -5,6 +5,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// poly-fill (IE support)
+import 'babel-polyfill'
+
 // u-reset.css
 import 'u-reset.css'
 
